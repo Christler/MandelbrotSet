@@ -48,6 +48,10 @@ namespace MandelbrotSet
         {
             CreateGraphicsObj();
             populateTextBoxes();
+            progressBar1.Maximum = bitmap.Height;
+            progressBar1.Minimum = 0;
+            progressBar1.Step = 1;
+            progressBar1.Style = ProgressBarStyle.Continuous;
         }
 
         private void CreateGraphicsObj()
@@ -63,7 +67,6 @@ namespace MandelbrotSet
             {
                 // Clear any existing graphics content.
                 graphics.Clear(Color.Black);
-                lblStatus.Text = "Status: Rendering...";
 
                 numColors = maxIterations;
 
@@ -96,7 +99,6 @@ namespace MandelbrotSet
                 ComplexPoint xyStep = canvasManager.GetDeltaMathsCoord(pixelStep);
 
                 int height = (int)graphics.VisibleClipBounds.Size.Height;
-                int kLast = -1;
                 double modulusSquared;
                 Color color;
                 Color previousColor = Color.Red;
@@ -104,6 +106,7 @@ namespace MandelbrotSet
                 // Main loop, nested over Y (outer) and X (inner) values.
                 int lineNumber = 0;
                 int yPix = bitmap.Height - 1;
+                
                 for (double y = yMin; y < yMax; y += xyStep.y)
                 {
                     int xPix = 0;
@@ -155,12 +158,21 @@ namespace MandelbrotSet
                     }
                     yPix -= xyPixelStep;
                     lineNumber++;
+
                     if ((lineNumber % 120) == 0)
                     {
                         Refresh();
                     }
+
+                    if (lineNumber < bitmap.Height)
+                    {
+                        progressBar1.Value = lineNumber;
+                    }
+                    else
+                    {
+                        progressBar1.Value = bitmap.Height;
+                    }
                 }
-                lblStatus.Text = "Status: Complete";
                 Refresh();
             }
             catch (Exception e2)
@@ -180,6 +192,7 @@ namespace MandelbrotSet
         private void btnDraw_Click(object sender, EventArgs e)
         {
             maxIterations = Convert.ToInt32(txtIterations.Text);
+
             RenderImage();
         }
 
