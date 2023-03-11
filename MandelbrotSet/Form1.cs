@@ -37,6 +37,8 @@ namespace MandelbrotSet
         {
             CreateGraphicsObj();
             populateTextBoxes();
+            numColors = maxIterations;
+            colorTable = new ColorTable(numColors);
             progressBar1.Maximum = bitmap.Height;
             progressBar1.Minimum = 0;
             progressBar1.Step = 1;
@@ -56,13 +58,12 @@ namespace MandelbrotSet
             {
                 // Clear any existing graphics content.
                 graphics.Clear(Color.Black);
+                Refresh();
 
-                numColors = maxIterations;
-
-                // If colourTable is not yet created or maxIterations has changed, create colourTable.
-                if ((colorTable == null) || (maxIterations != colorTable.kMax) || (numColors != colorTable.nColour))
+                if(numColors != maxIterations)
                 {
-                    colorTable = new ColorTable(numColors, maxIterations);
+                    numColors = maxIterations;
+                    colorTable = new ColorTable(numColors);
                 }
 
                 ComplexPoint screenBottomLeft = new ComplexPoint

@@ -9,21 +9,15 @@ namespace ClassLibrary
 {
     public class ColorTable
     {
-        public int kMax;
-        public int nColour;
-        private double scale;
         private Color[] colourTable;
 
-        public ColorTable(int n, int kMax)
+        public ColorTable(int numColors)
         {
-            nColour = n;
-            this.kMax = kMax;
-            scale = ((double)nColour) / kMax;
-            colourTable = new Color[nColour];
+            colourTable = new Color[numColors];
 
-            for (int i = 0; i < nColour; i++)
+            for (int i = 0; i < numColors; i++)
             {
-                double colourIndex = ((double)i) / nColour;
+                double colourIndex = ((double)i) / numColors;
                 double hue = Math.Pow(colourIndex, 0.25);
                 colourTable[i] = colorFromHSLA(hue, 0.9, 0.6);
             }
