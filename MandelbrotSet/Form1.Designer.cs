@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtIterations = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnMoveDown = new System.Windows.Forms.Button();
@@ -39,7 +40,6 @@
             this.btnMoveLeft = new System.Windows.Forms.Button();
             this.btnMoveUp = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtZoomScale = new System.Windows.Forms.TextBox();
             this.txtXMax = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtXMin = new System.Windows.Forms.TextBox();
@@ -49,8 +49,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtYMax = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.numZoomScale = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numZoomScale)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDraw
@@ -92,6 +93,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.groupBox1.Controls.Add(this.numZoomScale);
             this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Controls.Add(this.lblStatus);
             this.groupBox1.Controls.Add(this.btnReset);
@@ -100,7 +102,6 @@
             this.groupBox1.Controls.Add(this.btnMoveLeft);
             this.groupBox1.Controls.Add(this.btnMoveUp);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.txtZoomScale);
             this.groupBox1.Controls.Add(this.txtXMax);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtXMin);
@@ -121,6 +122,13 @@
             this.groupBox1.Size = new System.Drawing.Size(174, 848);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(18, 638);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(134, 23);
+            this.progressBar1.TabIndex = 5;
             // 
             // lblStatus
             // 
@@ -217,15 +225,6 @@
             this.label8.TabIndex = 36;
             this.label8.Text = "Zoom scale";
             // 
-            // txtZoomScale
-            // 
-            this.txtZoomScale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtZoomScale.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtZoomScale.Location = new System.Drawing.Point(94, 175);
-            this.txtZoomScale.Name = "txtZoomScale";
-            this.txtZoomScale.Size = new System.Drawing.Size(56, 25);
-            this.txtZoomScale.TabIndex = 35;
-            // 
             // txtXMax
             // 
             this.txtXMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -313,12 +312,17 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // progressBar1
+            // numZoomScale
             // 
-            this.progressBar1.Location = new System.Drawing.Point(18, 638);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(134, 23);
-            this.progressBar1.TabIndex = 5;
+            this.numZoomScale.Location = new System.Drawing.Point(94, 174);
+            this.numZoomScale.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numZoomScale.Name = "numZoomScale";
+            this.numZoomScale.Size = new System.Drawing.Size(56, 25);
+            this.numZoomScale.TabIndex = 5;
             // 
             // Form1
             // 
@@ -340,6 +344,7 @@
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDoubleClick);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numZoomScale)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -355,7 +360,6 @@
         private System.Windows.Forms.Button btnMoveLeft;
         private System.Windows.Forms.Button btnMoveUp;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtZoomScale;
         private System.Windows.Forms.TextBox txtXMax;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtXMin;
@@ -368,6 +372,7 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.NumericUpDown numZoomScale;
     }
 }
 

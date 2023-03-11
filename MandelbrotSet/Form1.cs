@@ -16,28 +16,17 @@ namespace MandelbrotSet
 {
     public partial class Form1 : Form
     {
-        private CanvasManager canvasManager;                        // Used for conversions between maths and pixel coordinates.
-        private ComplexPoint zoomCoord1 = new ComplexPoint          // First point (lower-left) of zoom rectangle.
-        {
-            x = -1,
-            y = 1
-        };  
-        private ComplexPoint zoomCoord2 = new ComplexPoint          // Second point (upper-right) of zoom rectangle.
-        {
-            x = -2,
-            y = 1
-        };  
-        private double yMin = -1.0;                                 // Default minimum Y for the set to render.
-        private double yMax = 1.0;                                  // Default maximum Y for the set to render.
-        private double xMin = -2.0;                                 // Default minimum X for the set to render.
-        private double xMax = 1.0;                                  // Default maximum X for the set to render.
-        private int maxIterations = 50;                             // Default maximum number of iterations for Mandelbrot calculation.
+        private double yMin = -2;                                 // Default minimum Y for the set to render.
+        private double yMax = 2;                                  // Default maximum Y for the set to render.
+        private double xMin = -3;                                 // Default minimum X for the set to render.
+        private double xMax = 1.5;                                  // Default maximum X for the set to render.
+        private int maxIterations = 100;                             // Default maximum number of iterations for Mandelbrot calculation.
         private int numColors = 0;                                  // Default number of colours to use in colour table.
         private int zoomScale = 5;                                  // Default amount to zoom in by.
-
+        private CanvasManager canvasManager;                        // Used for conversions between math and pixel coordinates.
         private Graphics graphics;                                  // Graphics object: all graphical rendering is done on this object.
-        private Bitmap bitmap;                                      // Bitmap used to draw images.
-        private ColorTable colorTable;                              // Colour table.
+        private Bitmap bitmap;                                      
+        private ColorTable colorTable;
 
         public Form1()
         {
@@ -177,7 +166,6 @@ namespace MandelbrotSet
             }
             catch (Exception e2)
             {
-                //MessageBox.Show("Exception Trapped: " + e2.Message, "Error");
                 throw e2;
             }
         }
@@ -235,11 +223,12 @@ namespace MandelbrotSet
             txtXMin.Text = xMin.ToString();
             txtYMax.Text = yMax.ToString();
             txtYMin.Text = yMin.ToString();
-            txtZoomScale.Text = zoomScale.ToString();
+            numZoomScale.Value = zoomScale;
         }
 
         private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            zoomScale = Convert.ToInt32(numZoomScale.Value);
             double x = Convert.ToDouble(e.X);
             double y = Convert.ToDouble(e.Y);
             ComplexPoint pixelLocation1 = new ComplexPoint
@@ -253,8 +242,8 @@ namespace MandelbrotSet
                 x = (int)(x + (bitmap.Width / (zoomScale)) / 4),
                 y = (int)(y + (bitmap.Height / (zoomScale)) / 4)
             };
-            zoomCoord1 = canvasManager.GetAbsoluteMathsCoord(pixelLocation1);
-            zoomCoord2 = canvasManager.GetAbsoluteMathsCoord(pixelLocation2);
+            ComplexPoint zoomCoord1 = canvasManager.GetAbsoluteMathsCoord(pixelLocation1);
+            ComplexPoint zoomCoord2 = canvasManager.GetAbsoluteMathsCoord(pixelLocation2);
             if (zoomCoord2.x < zoomCoord1.x)
             {
                 double temp = zoomCoord1.x;
@@ -277,10 +266,10 @@ namespace MandelbrotSet
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            yMin = -1.0;                                 
-            yMax = 1.0;                                  
-            xMin = -2.0;                                 
-            xMax = 1.0;
+            yMin = -2.0;                                 
+            yMax = 2.0;                                  
+            xMin = -3.0;                                 
+            xMax = 1.5;
             populateTextBoxes();
             RenderImage();
         }
@@ -294,5 +283,7 @@ namespace MandelbrotSet
         {
             Close();
         }
+
+        
     }
 }
