@@ -181,7 +181,10 @@ namespace MandelbrotSet
         private void btnDraw_Click(object sender, EventArgs e)
         {
             maxIterations = Convert.ToInt32(txtIterations.Text);
-
+            xMax = Convert.ToDouble(txtXMax.Text);
+            xMin = Convert.ToDouble(txtXMin.Text);
+            yMax = Convert.ToDouble(txtYMax.Text);
+            yMin = Convert.ToDouble(txtYMin.Text);
             RenderImage();
         }
 
@@ -271,6 +274,7 @@ namespace MandelbrotSet
             yMax = 2.0;                                  
             xMin = -3.0;                                 
             xMax = 1.5;
+            maxIterations = 100;
             populateTextBoxes();
             RenderImage();
         }

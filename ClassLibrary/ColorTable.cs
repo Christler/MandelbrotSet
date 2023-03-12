@@ -18,7 +18,7 @@ namespace ClassLibrary
             for (int i = 0; i < numColors; i++)
             {
                 double colourIndex = ((double)i) / numColors;
-                double hue = Math.Pow(colourIndex, 0.25);
+                double hue = Math.Pow(colourIndex, 0.9);
                 colourTable[i] = colorFromHSLA(hue, 0.9, 0.6);
             }
         }
